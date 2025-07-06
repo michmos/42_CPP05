@@ -12,7 +12,8 @@ CC		:= c++
 CFLAGS	:= -Wall -Wextra -Werror -std=c++11 -MMD
 DEBUG	?= 0
 ifeq ($(DEBUG), 1)
-	CFLAGS += -g -DDEBUG
+	CC 		:= g++
+	CFLAGS	+= -g -DDEBUG
 endif
 RM		:= rm -rf
 
