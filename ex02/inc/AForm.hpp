@@ -18,7 +18,7 @@ public:
 	AForm(const std::string& name, short signGrade, short execGrade);
 	AForm(const AForm& toCopy) noexcept;
 	AForm& operator=(const AForm& toCopy) noexcept;
-	~AForm() noexcept;
+	virtual ~AForm() noexcept;
 
 	// getters
 	const std::string& getName() const noexcept;
@@ -27,6 +27,8 @@ public:
 	short	getExecGrade() const noexcept;
 
 	void 	beSigned(const Bureaucrat& bToSign);
+	// pure virtual function to be implemented by derived classes
+	virtual void	execute(const Bureaucrat& executor) const = 0;
 
 	class GradeTooHighException : public std::exception {
 	public:
