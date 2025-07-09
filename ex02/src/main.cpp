@@ -15,119 +15,63 @@
 
 int main(void) {
 	// ------------ construction, operator ------------
-	{
-		// valid form
-		try {
-			printf(BOLD YELLOW "\n\nValid form creation test:\n" RESET);
-			ShrubberyCreationForm sForm("ShrubTarget");
-			std::cout << sForm << std::endl;
-			PresidentialPardonForm pForm("pTarget");
-			std::cout << pForm << std::endl;
-			RobotomyRequestForm rForm("rTarget");
-			std::cout << rForm << std::endl;
+	// valid form
+	try {
+		printf(BOLD YELLOW "\n\nValid form creation test:\n" RESET);
+		ShrubberyCreationForm sForm("ShrubTarget");
+		std::cout << sForm << std::endl;
+		PresidentialPardonForm pForm("pTarget");
+		std::cout << pForm << std::endl;
+		RobotomyRequestForm rForm("rTarget");
+		std::cout << rForm << std::endl;
 
-			printf(BOLD YELLOW "\n\nCopy constructor test:\n" RESET);
-			ShrubberyCreationForm sForm2(sForm);
-			std::cout << "og: " << sForm << std::endl;
-			std::cout << "copy constructed: " << sForm2 << std::endl;
+		printf(BOLD YELLOW "\n\nCopy constructor test:\n" RESET);
+		ShrubberyCreationForm sForm2(sForm);
+		std::cout << "og: " << sForm << std::endl;
+		std::cout << "copy constructed: " << sForm2 << std::endl;
 
-			printf(BOLD YELLOW "\n\nCopy assignment operator test:\n" RESET);
-			PresidentialPardonForm pForm2("pTarget2");
-			std::cout << "before: "<< pForm << std::endl;
-			Bureaucrat b("Tom", HIGHEST_GRADE);
-			b.signForm(pForm);
-			pForm2 = pForm;
-			std::cout << "after: "<< pForm << std::endl;
-		} catch (...) {
-			std::cerr << "Exception caught when attempting to create valid form" << std::endl;
-		}
+		printf(BOLD YELLOW "\n\nCopy assignment operator test:\n" RESET);
+		PresidentialPardonForm pForm2("pTarget2");
+		std::cout << "before: "<< pForm2 << std::endl;
+		Bureaucrat b("Tom", HIGHEST_GRADE);
+		b.signForm(pForm);
+		pForm2 = pForm;
+		std::cout << "after: "<< pForm << std::endl;
 
-	// 	// invalid form - too high grade
-	// 	printf(BOLD YELLOW "\n\nInvalid form creation test (too high singGrade):\n" RESET);
-	// 	try {
-	// 		Form form("invalidForm", 0, 100);
-	// 	} catch (Form::GradeTooHighException& e) {
-	// 		std::cerr << "Exception caught: " << e.what() << std::endl;
-	// 	} catch (...) {
-	// 		std::cerr << "General exception caught" << std::endl;
-	// 	}
-	//
-	// 	printf(BOLD YELLOW "\n\nInvalid form creation test (too high execGrade):\n" RESET);
-	// 	try {
-	// 		Form form("invalidForm", 100, 0);
-	// 	} catch (Form::GradeTooHighException& e) {
-	// 		std::cerr << "Exception caught: " << e.what() << std::endl;
-	// 	} catch (...) {
-	// 		std::cerr << "General exception caught" << std::endl;
-	// 	}
-	//
-	// 	// invalid form - too low grade
-	// 	printf(BOLD YELLOW "\n\nInvalid form creation test (too low singGrade):\n" RESET);
-	// 	try {
-	// 		Form form("invalidForm", 151, 100);
-	// 	} catch (Form::GradeTooLowException& e) {
-	// 		std::cerr << "Exception caught: " << e.what() << std::endl;
-	// 	} catch (...) {
-	// 		std::cerr << "General exception caught" << std::endl;
-	// 	}
-	//
-	// 	printf(BOLD YELLOW "\n\nInvalid form creation test (too low execGrade):\n" RESET);
-	// 	try {
-	// 		Form form("invalidForm", 100, 151);
-	// 	} catch (Form::GradeTooLowException& e) {
-	// 		std::cerr << "Exception caught: " << e.what() << std::endl;
-	// 	} catch (...) {
-	// 		std::cerr << "General exception caught" << std::endl;
-	// 	}
-	// }
-	//
-	// // ------------ getter ------------
-	// {
-	// 	// getters test
-	// 	printf(BOLD YELLOW "\n\nGetters test:\n" RESET);
-	// 	Form form("testForm", 50, 100);
-	// 	std::cout << "Form name: " << form.getName() 
-	// 			<< " state: " << form.getSignState()
-	// 			<< " signGrade: " << form.getSignGrade()
-	// 			<< " execGrade: " << form.getExecGrade()
-	// 			<< std::endl;
-	// }
-	//
-	// // ------------ Bureaucrat ------------
-	// {
-	// 	// Bureaucrat allowed to sign
-	// 	printf(BOLD YELLOW "\n\nBureaucrat allowed to sign test:\n" RESET);
-	// 	try {
-	// 		Bureaucrat bureaucrat("Bureaucrat1", 50);
-	// 		Form form("form1", 50, 100);
-	// 		form.beSigned(bureaucrat);
-	// 		Form form2("form2", 50, 100);
-	// 		bureaucrat.signForm(form2);
-	// 	} catch (...) {
-	// 		std::cerr << "General exception caught when creating Bureaucrat or Form" << std::endl;
-	// 	}
-	//
-	// 	// Bureaucrat not allowed to sign -- form.beSigned
-	// 	printf(BOLD YELLOW "\n\nBureaucrat not allowed to sign test -- form.beSigned():\n" RESET);
-	// 	try {
-	// 		Bureaucrat bureaucrat("Bureaucrat1", 50);
-	// 		Form form("form1", 49, 100);
-	// 		form.beSigned(bureaucrat);
-	// 	} catch (Form::GradeTooLowException& e) {
-	// 		std::cerr << "Exception caught: " << e.what() << std::endl;
-	// 	}
-	// 	// Bureaucrat not allowed to sign -- Bureaucrat.signForm()
-	// 	printf(BOLD YELLOW "\n\nBureaucrat not allowed to sign test -- Bureaucrat.signForm():\n" RESET);
-	// 	try {
-	// 		Bureaucrat bureaucrat("Bureaucrat1", 50);
-	// 		Form form("form1", 49, 100);
-	// 		bureaucrat.signForm(form);
-	// 	} catch (...) {
-	// 		std::cerr << "General exception caught when creating Bureaucrat or Form" << std::endl;
-	// 	}
-	//
+		printf(BOLD YELLOW "\n\nExecute action: ShrubberyCreationForm\n" RESET);
+		b.signForm(sForm);
+		sForm.execute(b);
 
+		printf(BOLD YELLOW "\n\nExecute action: PresidentialPardonForm\n" RESET);
+		b.signForm(pForm);
+		pForm.execute(b);
+
+		printf(BOLD YELLOW "\n\nExecute action: RobotomyRequestForm\n" RESET);
+		b.signForm(rForm);
+		rForm.execute(b);
+		rForm.execute(b);
+		rForm.execute(b);
+		rForm.execute(b);
+
+		printf(BOLD YELLOW "\n\nExecution through bureaucrat object\n" RESET);
+		b.executeForm(sForm);
+		b.executeForm(rForm);
+		b.executeForm(pForm);
 		
+	} catch (std::exception &e) {
+		std::cerr << "Unexpected exception caught: " << e.what() << std::endl;
 	}
 
+	// Bureaucrat not allowed to execute -- form.beSigned
+	printf(BOLD YELLOW "\n\nBureaucrat not allowed to execute test - form not signed:\n" RESET);
+	Bureaucrat bureaucrat("Bureaucrat1", HIGHEST_GRADE);
+	ShrubberyCreationForm sForm("target");
+	bureaucrat.executeForm(sForm);
+
+	// Bureaucrat not allowed to execute -- insufficient grade
+	printf(BOLD YELLOW "\n\nBureaucrat not allowed to exec - insufficient grade\n" RESET);
+	Bureaucrat b1("bad b", LOWEST_GRADE);
+	Bureaucrat b2("good b", HIGHEST_GRADE);
+	b2.signForm(sForm);
+	b1.executeForm(sForm);
 }
