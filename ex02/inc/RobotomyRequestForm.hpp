@@ -5,8 +5,6 @@
 
 class  RobotomyRequestForm : public AForm {
 private:
-	std::string	target_;
-
 	void	executeAction() const override;
 
 public:

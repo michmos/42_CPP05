@@ -1,11 +1,10 @@
 
 #include "../inc/AForm.hpp"
 #include <string>
-#include <utility>
 
 // constructors, operators, destructors
-AForm::AForm(const std::string& name, short signGrade, short execGrade) 
-	: name_(name), signed_(false), signGrade_(signGrade), execGrade_(execGrade)
+AForm::AForm(const std::string& name, short signGrade, short execGrade, const std::string& target)
+	: name_(name), signed_(false), signGrade_(signGrade), execGrade_(execGrade), target_(target)
 {
 	if (signGrade < 1) {
 		throw GradeTooHighException("Sign grade too high");
@@ -27,6 +26,7 @@ AForm::AForm(const AForm& toCopy) noexcept
 AForm& AForm::operator=(const AForm& toCopy) noexcept {
 	if (this != &toCopy) {
 		signed_ = toCopy.signed_;
+		target_ = toCopy.target_;
 	}
 	return (*this);
 }
@@ -38,7 +38,8 @@ std::ostream& operator<<(std::ostream& os, const AForm& rhs) noexcept {
 	return (os << "Form name: " << rhs.getName()
 		 		<< ", state: " << rhs.getSignState()
 		 		<< ", sign grade: " << rhs.getSignGrade()
-		 		<< ", exec grade: " << rhs.getExecGrade());
+		 		<< ", exec grade: " << rhs.getExecGrade()
+		 		<< ", target: " << rhs.getTarget());
 }
 
 
@@ -46,6 +47,10 @@ std::ostream& operator<<(std::ostream& os, const AForm& rhs) noexcept {
 // getters
 const std::string& AForm::getName() const noexcept {
 	return (name_);
+}
+
+const std::string& AForm::getTarget() const noexcept {
+	return (target_);
 }
 
 bool	AForm::getSignState() const noexcept {

@@ -15,14 +15,19 @@ private:
 
 	// pure virtual function to be implemented by derived classes
 	virtual void	executeAction() const = 0;
+
+protected:
+	std::string			target_;
+
 public:
-	AForm(const std::string& name, short signGrade, short execGrade);
+	AForm(const std::string& name, short signGrade, short execGrade, const std::string& target);
 	AForm(const AForm& toCopy) noexcept;
 	AForm& operator=(const AForm& toCopy) noexcept;
 	virtual ~AForm() noexcept;
 
 	// getters
 	const std::string& getName() const noexcept;
+	const std::string& getTarget() const noexcept;
 	bool	getSignState() const noexcept;
 	short	getSignGrade() const noexcept;
 	short	getExecGrade() const noexcept;

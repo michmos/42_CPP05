@@ -7,8 +7,7 @@
 #include <string>
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) noexcept
-	: AForm("ShrubberyCreationForm", 145, 137),
-	target_(target)
+	: AForm("ShrubberyCreationForm", 145, 137, target)
 {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& toCopy) noexcept
@@ -20,9 +19,8 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& toCopy
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& toAsgn) noexcept {
 	if (this != &toAsgn) {
-		//copy non const values (such as signed bool)
+		//copy non const values (such as signed bool and target)
 		AForm::operator=(toAsgn);
-		target_ = toAsgn.target_;
 	}
 	return (*this);
 }

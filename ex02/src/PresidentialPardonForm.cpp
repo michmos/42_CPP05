@@ -2,15 +2,14 @@
 #include <iostream>
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
-	: AForm("PresidentialPardonForm", 25, 5),
-	target_(target)
+	: AForm("PresidentialPardonForm", 25, 5, target)
 {}
 
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& toCopy) noexcept
 	: PresidentialPardonForm(toCopy.target_)
 {
-	//call copy assignment operator to copy non const values (such as signed bool)
+	//call copy assignment operator to copy non const values (such as signed bool and target)
 	*this = toCopy;
 }
 
@@ -18,7 +17,6 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 	if (this != &toAsgn) {
 		//copy non const values (such as signed bool)
 		AForm::operator=(toAsgn);
-		target_ = toAsgn.target_;
 	}
 	return (*this);
 }

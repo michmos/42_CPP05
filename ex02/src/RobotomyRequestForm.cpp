@@ -3,8 +3,7 @@
 #include <random>
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target) noexcept
-	: AForm("RobotomyRequestForm", 72, 45),
-	target_(target)
+	: AForm("RobotomyRequestForm", 72, 45, target)
 {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& toCopy) noexcept
@@ -16,9 +15,8 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& toCopy) noex
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& toAsgn) noexcept {
 	if (this != &toAsgn) {
-		//copy non const values (such as signed bool)
+		//copy non const values (such as signed bool and target)
 		AForm::operator=(toAsgn);
-		target_ = toAsgn.target_;
 	}
 	return (*this);
 }
