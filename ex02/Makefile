@@ -2,7 +2,12 @@
 NAME	:= exec_bureaucrat
 
 SRC_DIR := src
-SRCS	:= main.cpp Bureaucrat.cpp AForm.cpp
+SRCS	:= main.cpp \
+		   Bureaucrat.cpp \
+		   AForm.cpp \
+		   PresidentialPardonForm.cpp \
+		   ShrubberyCreationForm.cpp \
+		   RobotomyRequestForm.cpp
 SRCS	:= $(addprefix $(SRC_DIR)/, $(SRCS))
 
 BUILD_DIR	:= .build

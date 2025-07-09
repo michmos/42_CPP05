@@ -1,5 +1,7 @@
 
 #include "../inc/AForm.hpp"
+#include <string>
+#include <utility>
 
 // constructors, operators, destructors
 AForm::AForm(const std::string& name, short signGrade, short execGrade) 
@@ -69,6 +71,17 @@ void	AForm::beSigned(const Bureaucrat& bToSign) {
 	}
 }
 
+void	AForm::execute(const Bureaucrat& executor) const {
+	if (getSignState()) {
+		throw FormNotSignedException("Trying to execute unsigned form of type: " + name_);
+	} else if (getExecGrade() < executor.getGrade()) {
+		throw GradeTooLowException(std::string("Trying to execute form with insufficient grade.")
+							 + " Required: " + std::to_string(execGrade_)
+							 + " Bureaucrat grade: " + std::to_string(executor.getGrade()));
+	}
+	executeAction();
+}
+
 
 
 // exceptions
@@ -84,4 +97,12 @@ AForm::GradeTooLowException::GradeTooLowException(const std::string& message) no
 
 const char* AForm::GradeTooLowException::what() const noexcept {
 	return (message_.c_str());
+}
+
+AForm::FormNotSignedException::FormNotSignedException(const std::string& message) noexcept
+	: message_(message) {}
+
+const char* AForm::FormNotSignedException::what() const noexcept {
+	return (message_.c_str());
+
 }
