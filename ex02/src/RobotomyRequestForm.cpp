@@ -36,7 +36,7 @@ bool	randomTrueOrFalse() noexcept {
 }
 
 void	RobotomyRequestForm::executeAction() const {
-	std::cout << "This is drilling noise..." << std::endl;
+	std::cout << "This is drilling noise... ";
 	if (randomTrueOrFalse()) {
 		std::cout << target_ << " has been robotomized successfully" << std::endl;
 	} else {
