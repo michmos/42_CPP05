@@ -77,7 +77,7 @@ void	AForm::beSigned(const Bureaucrat& bToSign) {
 }
 
 void	AForm::execute(const Bureaucrat& executor) const {
-	if (getSignState()) {
+	if (!getSignState()) {
 		throw FormNotSignedException("Trying to execute unsigned form of type: " + name_);
 	} else if (getExecGrade() < executor.getGrade()) {
 		throw GradeTooLowException(std::string("Trying to execute form with insufficient grade.")
